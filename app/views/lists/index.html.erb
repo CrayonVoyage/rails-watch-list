@@ -1,0 +1,10 @@
+<div class="container card-holder w-50">
+  <% @lists.each do |list| %>
+    <div class="card m-2">
+      <%= list.name %>
+      <%= link_to "See Details", list_path(list) %>
+
+    </div>
+  <% end %>
+</div>
+<hr>

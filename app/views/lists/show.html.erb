@@ -1,0 +1,34 @@
+<h1><%= @list.name %></h1>
+
+<hr>
+
+<h5>Movies in your List </h5>
+<div class="card_holder d-flex gap-2">
+  <% @bookmarks.each do |bookmark| %>
+
+    <div class="card" style="width: 12rem;">
+      <img src=<%= bookmark.movie.poster_url %> class="card-img-top" alt="film">
+      <div class="card-body d-flex flex-column justify-content-between">
+        <h5 class="card-title"><%= bookmark.movie.title %></h5>
+        <p class="card-text"><%= bookmark.comment %></p>
+        <div class="buttons_holder">
+          <%= link_to "Edit", edit_list_bookmark_path(@list, bookmark), class:"btn btn-warning"  %>
+          <%= link_to "Delete", list_bookmark_path(@list, bookmark), class:"btn btn-danger", data: { turbo_method: :delete }  %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+    </div>
+</div>
+<hr>
+
+<div class="container w-25 mx-auto">
+  <h3>Add New Bookmark</h3>
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.input :comment %>
+    <%= f.association :movie, as: :radio_buttons %>
+    <%= f.button :submit ,class:"btn btn-primary"%>
+  <% end %>
+</div>
+
+<%= link_to "back", lists_path, class:"btn btn-secondary m-2" %>
