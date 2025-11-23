@@ -1,34 +1,56 @@
+<div class='main-container'>
 <h1><%= @list.name %></h1>
-
 <hr>
+  <div class="container d-flex">
+    <div class="row w-100">
+      <div class="card-product-holder w-75 gap-2">
+        <% @bookmarks.each do |bookmark| %>
+          <div class="card-product">
+            <img src="<%= bookmark.movie.poster_url %>" alt="film">
+            <div class="card-body">
+              <div class="card-body-text">
+                <h2><%= bookmark.movie.title %></h5>
+                <p><i>"<%= bookmark.comment %>"</i></p>
+              </div>
+              <div class="card-body-buttons">
+                <i><%= link_to "Edit", edit_list_bookmark_path(@list, bookmark), class:"flash flash-warning"  %> </i>
+                <i><%= link_to "Delete", list_bookmark_path(@list, bookmark), class:"flash flash-danger", data: { turbo_method: :delete }  %></i>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
 
-<h5>Movies in your List </h5>
-<div class="card_holder d-flex gap-2">
-  <% @bookmarks.each do |bookmark| %>
-
-    <div class="card" style="width: 12rem;">
-      <img src=<%= bookmark.movie.poster_url %> class="card-img-top" alt="film">
-      <div class="card-body d-flex flex-column justify-content-between">
-        <h5 class="card-title"><%= bookmark.movie.title %></h5>
-        <p class="card-text"><%= bookmark.comment %></p>
-        <div class="buttons_holder">
-          <%= link_to "Edit", edit_list_bookmark_path(@list, bookmark), class:"btn btn-warning"  %>
-          <%= link_to "Delete", list_bookmark_path(@list, bookmark), class:"btn btn-danger", data: { turbo_method: :delete }  %>
-        </div>
+      <div class="bookmark-container w-25">
+        <h4>Add New Bookmark</h4>
+        <%= simple_form_for [@list, @bookmark] do |f| %>
+          <%= f.input :comment, as: :text, input_html: { rows: 4 } %>
+          <%= f.association :movie %>
+          <%= f.button :submit ,class:"btn btn-primary"%>
+        <% end %>
       </div>
     </div>
-  <% end %>
+  </div>
+
+  <hr>
+
+  <h2>Reviews</h2>
+  <div class="review-block">
+    <div class="row w-100">
+      <%= link_to "Add Review", new_list_review_path(@list), class:"flash flash-grey"%>
+      <div class="reviews-list w-75">
+        <ul>
+          <% @reviews.each do |review| %>
+          <li class="review">
+            <%= review.comment %>
+            <%= link_to list_review_path(@list, review), class:"fa-solid fa-circle-xmark", data: { turbo_method: :delete }  do%>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-</div>
-<hr>
-
-<div class="container w-25 mx-auto">
-  <h3>Add New Bookmark</h3>
-  <%= simple_form_for [@list, @bookmark] do |f| %>
-    <%= f.input :comment %>
-    <%= f.association :movie, as: :radio_buttons %>
-    <%= f.button :submit ,class:"btn btn-primary"%>
-  <% end %>
+  </div>
 </div>
 
-<%= link_to "back", lists_path, class:"btn btn-secondary m-2" %>
+  <%= link_to "back", lists_path, class:"btn btn-secondary m-2" %>

@@ -1,7 +1,6 @@
 class BookmarksController < ApplicationController
-  before_action :bookmark_params, only: [:create]
-  before_action :set_list, only: [:create, :destroy]
-  before_action :set_bookmark, only: [:edit, :destroy]
+  before_action :set_list, only: [:create, :destroy, :edit, :update]
+  before_action :set_bookmark, only: [:edit, :destroy, :edit, :update]
 
   def create
     @bookmark = Bookmark.new(bookmark_params)
@@ -13,10 +12,10 @@ class BookmarksController < ApplicationController
   def edit
   end
 
+
   def update
-    @restaurant = Restaurant.find(params[:id])
-    @restaurant.update(restaurant_params)
-    redirect_to restaurant_path(@restaurant)
+    @bookmark.update(bookmark_params)
+    redirect_to list_path(@list)
   end
 
   def destroy

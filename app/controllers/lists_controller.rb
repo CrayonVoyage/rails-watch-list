@@ -7,7 +7,8 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @bookmark = Bookmark.new
-    @bookmarks = Bookmark.where(list_id: @list.id)
+    @bookmarks = Bookmark.where(list_id: @list.id).order(created_at: :desc)
+    @reviews = Review.where(list_id: @list.id)
   end
 
   def new
@@ -19,7 +20,7 @@ class ListsController < ApplicationController
     @list.save
     redirect_to list_path(@list)
   end
-  
+
 private
 
   def list_params

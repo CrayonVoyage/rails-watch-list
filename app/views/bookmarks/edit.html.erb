@@ -1,3 +1,13 @@
-<h1>Edit Bookmark ?</h1>
+<div class="container w-75">
+  <h1>Edit Bookmark ?</h1>
 
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.input :comment %>
+    <%= f.association :movie, as: :radio_buttons %>
+    <%= f.button :submit ,class:"btn btn-primary"%>
+  <% end %>
+
+</div>
+<hr>
 <%= link_to "cancel", lists_path , class:"btn btn-primary" %>
+<hr>

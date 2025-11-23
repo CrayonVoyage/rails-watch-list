@@ -1,0 +1,33 @@
+.main-container {
+   width: 80% ;
+   margin: auto;
+   text-align: center;
+}
+
+.bookmark-container {
+  background-color: #ffffff;
+  margin-top: 8px;
+  padding: 6px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  height: 400px;
+  position: sticky;
+  top: 5px;
+}
+
+.review-block {
+  display: flex;
+  width: 100%;
+}
+
+.reviews-list {
+  text-align: left;
+}
+
+.review {
+  list-style-type: none;
+  font-size: 14px;
+  opacity: .7;
+  color: #505050
+}
+

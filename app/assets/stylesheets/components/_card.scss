@@ -1,0 +1,84 @@
+.card-product-holder {
+  align-content: space-between;
+}
+
+.card-product {
+  height: 100px;
+  width: 100%;
+  margin: 8px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  display: flex;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+
+
+.card-product img {
+  height: 100%;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-body-text {
+  text-align: left;
+}
+
+.card-body-text h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-body-text p {
+  font-size: 18px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-body-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flash {
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 4px;
+
+}
+
+.flash-warning {
+  border: 2px solid #FFC65A;
+  color: #FFC65A;
+  text-decoration: none;
+}
+
+.flash-danger {
+  border: 2px solid #FD1015;
+  color: #FD1015;
+  text-decoration: none;
+}
+
+.flash-grey {
+  border: 2px solid #636363;
+  color: #636363;
+  text-decoration: none;
+  justify-content: center;
+  width: 150px;
+  height: 50px;
+}
